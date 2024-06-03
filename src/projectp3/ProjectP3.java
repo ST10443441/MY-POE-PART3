@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package projectp2;
+package projectp3;
 
 
 import javax.swing.JOptionPane;
@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author Cameron Griffin ST10443441
  */
-public class ProjectP2 {
+public class ProjectP3 {
 
     
     
     
-    public ProjectP2(){   }
+    public ProjectP3(){   }
     //Adding Variables to global 
     
     static BaseForm form = new BaseForm();

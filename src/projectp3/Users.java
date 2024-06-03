@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package projectp2;
+package projectp3;
 
 import javax.swing.JOptionPane;
 
@@ -183,11 +183,11 @@ public class Users
     }
     
     public void output(String t){
-        ProjectP2 p = new ProjectP2();
+        ProjectP3 p = new ProjectP3();
         p.output(t);
     }
     public String returnLoginStatus(boolean b){
-        ProjectP2 p = new ProjectP2();
+        ProjectP3 p = new ProjectP3();
         return p.returnLoginStatus(b);
     }
     

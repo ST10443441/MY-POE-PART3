@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package projectp2;
+package projectp3;
 
 /**
  *
@@ -112,7 +112,7 @@ public class BaseForm extends javax.swing.JFrame {
     
     //Declaring Object for Project Class
     Users obj = new Users();
-    ProjectP2 p = new ProjectP2();
+    ProjectP3 p = new ProjectP3();
     //Login Button
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:

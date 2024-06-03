@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package projectp2;
+package projectp3;
 
 import java.awt.Event;
 import javax.swing.JOptionPane;
@@ -149,7 +149,7 @@ public class EasyKanBan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //Declare Variables
-    ProjectP2 obj = new ProjectP2();
+    ProjectP3 obj = new ProjectP3();
     
     int last = 0;
     //Options Button

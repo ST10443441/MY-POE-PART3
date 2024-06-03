@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package projectp2;
+package projectp3;
 
 
+import projectp3.TaskClass;
+import projectp3.Users;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author Cameron Griffin ST10443441
  */
-public class ProjectP2Test {
+public class ProjectP3Test {
     
-    public ProjectP2Test() {    }
+    public ProjectP3Test() {    }
 
 
      boolean run = false;

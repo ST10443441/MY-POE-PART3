@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package projectp2;
+package projectp3;
 
 import javax.swing.JOptionPane;
 
@@ -98,7 +98,7 @@ public class TaskClass {
     //Gets and tests that the Description is less than 50 Characters
     private String addNewDescription(String b)
     {
-        ProjectP2 obj = new ProjectP2();
+        ProjectP3 obj = new ProjectP3();
         //Declare Variables
         String des = b;
         //Input
