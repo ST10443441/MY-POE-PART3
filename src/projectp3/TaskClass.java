@@ -18,6 +18,9 @@ public class TaskClass {
     private int tNum ,duration;
     private int totDur = 0;
     String[] status = {"To Do","Done","Doing"};
+
+    ProjectP3 obj = new ProjectP3();
+  
     public TaskClass(){}
     //Test Task Description length
     public boolean checkTaskDescription(String des)
@@ -28,7 +31,9 @@ public class TaskClass {
     public String createTaskID(String tName, int tNum)
     {
         //Generates the Task Id 
-        return  tName.substring(0, 2)+";"+tNum+";"+(tName.substring(tName.length()-3, tName.length())).toUpperCase();
+        return  tName.substring(0, 2)
+                +";"+tNum+";"+
+                (tName.substring(tName.length()-3, tName.length())).toUpperCase();
     }
     //Display Data to User in Joption Panes 
     public void printTaskDetails(EasyKanBan kanBan)
@@ -67,17 +72,17 @@ public class TaskClass {
     public void settDes(String b){
         tDes = addNewDescription(b);
     }
-    public void  settID(){
+    public void settID(){
         tID  = createTaskID(tName, tNum);
     }
-    public void  setStatus(int i){
+    public void setStatus(int i){
         tStatus = status[i];
     }
     public void setDur(int b){
         duration = b;
     }
-    public void settNum(int tNum) {
-        this.tNum = tNum;
+    public void settNum(int t) {
+        tNum = t;
     }
     //Getters
     public String gettName() {
@@ -92,18 +97,18 @@ public class TaskClass {
     public String getStatus(int t) {
         return status[t];
     }
-    
+
     
     
     //Gets and tests that the Description is less than 50 Characters
     private String addNewDescription(String b)
     {
-        ProjectP3 obj = new ProjectP3();
+        
         //Declare Variables
         String des = b;
         //Input
         
-        if (checkTaskDescription(des))
+        if (!checkTaskDescription(des))
         {
             do {            
                 des = JOptionPane.showInputDialog("Please enter a task descrpitin of less than 50 characters");
@@ -113,6 +118,8 @@ public class TaskClass {
             obj.output("Task Successfully Captured");
         return des;
     }
+
+    
 
     
     

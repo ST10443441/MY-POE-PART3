@@ -176,6 +176,17 @@ public class EasyKanBan extends javax.swing.JFrame {
     {
         return last;
     }
+    //Get cells with int values
+    public int getIntCol(int c, int r)
+    {
+        
+        return Integer.parseInt(tblOutput.getValueAt(r, c).toString());   //C, Reichenbach,2024
+    }
+    //Get cells with String values
+    public String getStrCol(int c, int r)
+    {
+        return tblOutput.getValueAt(r, c).toString();           //C, Reichenbach,2024
+    }
     //Allows Main class to set the TextPane Text
     public void setOutput(String out)
     {
