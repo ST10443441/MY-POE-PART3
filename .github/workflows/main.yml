@@ -67,4 +67,5 @@ jobs:
         working-directory: ./test
         run: |
          ls
-         "../testresources/junit-platform-console-standalone-1.6.0.jar" -cp "." --select-class projectp3.ProjectP3Test
+         java -Djava.awt.headless=true -jar "../testresources/junit-platform-console-standalone-1.6.0.jar" -cp "." --select-class projectp3.ProjectP3Test
+
