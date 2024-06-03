@@ -40,7 +40,7 @@ jobs:
      # Compiles classes to test 
       - name: compile classes
         working-directory: ./src
-        run: javac -cp "../testresources/junit-platform-console-standalone-1.6.0.jar" ./projectp3/BaseForm.java ./projectp3/EasyKanBan.java ./projectp3/ProjectP3.java ./projectp3/TaskClass.java ./projectp3/Users.java  "../test/projectp3/ProjectP2Test.java"      
+        run: javac -cp "../testresources/junit-platform-console-standalone-1.6.0.jar" ./projectp3/BaseForm.java ./projectp3/EasyKanBan.java ./projectp3/ProjectP3.java ./projectp3/TaskClass.java ./projectp3/Users.java  "../test/projectp3/ProjectP3Test.java"      
                                                                    
     # list contents of src to verify that classess compiled 
       - name: List contents of src directory after compile
