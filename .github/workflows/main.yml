@@ -53,9 +53,9 @@ jobs:
         run: cp -t  "../../test/projectp3"  TaskClass.class  Users.class BaseForm.class EasyKanBan.class ProjectP3.class
         
         #copy compiled tests 
-      - name : copy compiled Test classes to testresources directory 
+      - name : copy compiled Test classes
         working-directory: ./build/test/classes/projectp3
-        run: cp -t ProjectP3Test.class
+        run: cp -t ./ProjectP3Test.class
         
         # list contents or directory
       - name: List contents test package
