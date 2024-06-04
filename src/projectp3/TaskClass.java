@@ -5,6 +5,11 @@
  */
 package projectp3;
 
+
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 
@@ -14,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class TaskClass {
     //Member Variables
-    private String tName, tDes,devDetails,tID,tStatus;
+    private String tName, tDes,devDetails,tID,tStatus,output;
     private int tNum ,duration;
     private int totDur = 0;
     String[] status = {"To Do","Done","Doing"};
@@ -38,6 +43,12 @@ public class TaskClass {
     //Display Data to User in Joption Panes 
     public void printTaskDetails(EasyKanBan kanBan)
     {
+        //Send Data to EasyKanBan seTable
+        kanBan.setTable(tName, tDes, devDetails, tID, tStatus, tNum, duration);
+    }
+    //Sends Output to User
+    public void userOut()
+    {
         //Outputs Data in JoptionPane
         JOptionPane.showMessageDialog(null, tStatus,"Status",1);
         JOptionPane.showMessageDialog(null, devDetails,"Developer Details",1);
@@ -45,10 +56,42 @@ public class TaskClass {
         JOptionPane.showMessageDialog(null, tName,"Task Name",1);
         JOptionPane.showMessageDialog(null, tDes,"Task Description",1);
         JOptionPane.showMessageDialog(null, tID,"Task ID",1);
-        JOptionPane.showMessageDialog(null, duration+" Hours","Duration",1);    
+        JOptionPane.showMessageDialog(null, duration+" Hours","Duration",1);
+    }
+    
+    //Create Text File for Data Storage
+    public void textFileWrite()
+    {
+        String line = tName+"|"+tDes+"|"+devDetails+"|"+tID+"|"+tStatus+"|"+tNum+"|"+duration+"\n";
+        File file = new File("data.txt");            //(W3schools,2024)
         
-        //Send Data to EasyKanBan seTable
-        kanBan.setTable(tName, tDes, devDetails, tID, tStatus, tNum, duration);
+        try {
+            if (file.createNewFile())
+            {
+                //For Developer
+                System.out.println("File Created : "+ file.getName());
+            }
+            else 
+            {
+                //For Developer
+                System.out.println("File Found.");
+            }
+            
+        } 
+        catch (IOException ex) {
+            //For Developer
+            System.out.println("An error occurred.ln82:TaskClass");
+        }
+        
+        try {                                               //(W3schools,2024)
+            FileWriter myWriter = new FileWriter(file.getName(),true);
+            myWriter.write(line);
+            myWriter.close();
+        }
+        catch (IOException e) {
+            //For Developer
+            System.out.println("An error occurred. ln93:TaskClass");
+        }
     }
     //Calc the total Hours 
     public void calcTotalHours()
@@ -94,6 +137,9 @@ public class TaskClass {
     public int getDur() {
         return duration;
     }
+    public String getOutput() {
+        return output;
+    }
     public String getStatus(int t) {
         return status[t];
     }
@@ -115,7 +161,7 @@ public class TaskClass {
             } while (des.length() > 50);
         }
         else 
-            obj.output("Task Successfully Captured");
+            output="Task Successfully Captured";
         return des;
     }
 

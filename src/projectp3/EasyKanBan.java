@@ -176,17 +176,7 @@ public class EasyKanBan extends javax.swing.JFrame {
     {
         return last;
     }
-    //Get cells with int values
-    public int getIntCol(int c, int r)
-    {
-        
-        return Integer.parseInt(tblOutput.getValueAt(r, c).toString());   //C, Reichenbach,2024
-    }
-    //Get cells with String values
-    public String getStrCol(int c, int r)
-    {
-        return tblOutput.getValueAt(r, c).toString();           //C, Reichenbach,2024
-    }
+    
     //Allows Main class to set the TextPane Text
     public void setOutput(String out)
     {
@@ -201,7 +191,15 @@ public class EasyKanBan extends javax.swing.JFrame {
         model.addRow(row);
         last = tNum;
     }
-    
+    public void resetTable(int size)
+    {
+        DefaultTableModel model = (DefaultTableModel) tblOutput.getModel(); 
+        for (int i = 0; i < size; i++) 
+        {
+            model.removeRow(i);    
+        }
+         
+    }
     /**
      * @param args the command line arguments
      */

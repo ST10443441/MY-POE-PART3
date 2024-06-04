@@ -5,6 +5,9 @@
 package projectp3;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,11 +30,14 @@ public class ProjectP3 {
     public static void main(String[] args) 
     {
         form.setVisible(true);
-        kanBan.setVisible(true);
+        addExisting();
+        kanBan.setVisible(true);    
+        
+                
     }
     
     //Out put the message to the User and developer
-    public void output(String out)
+    public static void output(String out)
     {
         form.setOutput(out);
         kanBan.setOutput(out);
@@ -99,11 +105,106 @@ public class ProjectP3 {
                 throw new AssertionError();
         }
     }
+    public static void taskData(String tName,String tDes,int choice,String devDetails,int count,int duration)
+    {
+            //Sets the Data from the User
+            taskClass.settName(tName);
+            //Set Dev Details from User
+            taskClass.setDevDetails(tDes);
+            //Sets Choice
+            taskClass.setStatus(choice);
+            //Set Task Duration From User
+            taskClass.setDur(duration);
+            //Calulate TotHours of Hours
+            taskClass.calcTotalHours();
+            //Set Task Desrciption From User
+            taskClass.settDes(tDes);
+            //Set the Task Number
+            taskClass.settNum(count);
+            //Generates the Task Id 
+            taskClass.settID();
+            //Sends data to JTable
+            taskClass.printTaskDetails(kanBan);
+    }
+    //Add Existing tasks to JTable
+    public static void addExisting()
+    {
+        String[] status = {"To Do","Done","Doing"};
+        int choice;
+        try 
+        {
+            File file = new File("data.txt");
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+              String data = reader.nextLine();
+              //For Dev
+              System.out.println(data);
+                if (!data.isEmpty()){
+                int x = data.indexOf("|");
+
+                String tName = data.substring(0, x);
+
+                String temp = data.substring(x+1);
+                data = temp;
+                x = data.indexOf("|");
+
+                String tDes = data.substring(0, x);
+
+                temp = data.substring(x+1);
+                data = temp;
+                x = data.indexOf("|");
+
+                String devDetails = data.substring(0, x);
+
+                temp = data.substring(x+1);
+                data = temp;
+                x = data.indexOf("|");
+
+                String tID = data.substring(0, x);
+
+                temp = data.substring(x+1);
+                data = temp;
+                x = data.indexOf("|");
+
+                String tStatus = data.substring(0, x);
+
+                temp = data.substring(x+1);
+                data = temp;
+                x = data.indexOf("|");
+
+                int count = Integer.parseInt(data.substring(0, x));
+
+                temp = data.substring(x+1);
+                data = temp;
+
+                int duration = Integer.parseInt(data.substring(0, data.length()));
+
+                if (tStatus.contains(status[0])) 
+                {
+                      choice = 0;
+                }else if (tStatus.contains(status[1])) 
+                {
+                      choice = 1;
+                }else
+                {
+                      choice = 2;
+                }    
+                taskData(tName,tDes,choice,devDetails,count,duration);
+                }
+            }
+              
+            
+            reader.close();
+        } catch (FileNotFoundException e) 
+        {
+            output("An error occurred. ln200:ProjectP3");
+        }
+    }
     //Adds Tasks based on user Input
     public void addNew(int t)
     {
         //Declare the Variables
-        int last = kanBan.getLastID(),choice;
+        int last = kanBan.getLastID();
         String[] status = {"To Do","Done","Doing"};
         int size = last + t;
         
@@ -111,55 +212,113 @@ public class ProjectP3 {
         for (int i = 1; i < t+1; i++) 
         {
             int count = i+ last;
-            
-            String temp = JOptionPane.showInputDialog("Task Name");
             //Gets the Data from the User
-            taskClass.settName(temp);
-            temp = JOptionPane.showInputDialog("First and Last Name of Dev");
-            taskClass.setDevDetails(temp);
-            
-            //MultiChoice for the Status of the Task being added
-            choice = JOptionPane.showOptionDialog(null, "Choose an Option:", "Options", JOptionPane.YES_NO_CANCEL_OPTION, 0, null, status, status[0]);
-            
-            taskClass.setStatus(choice);
-            //Get TAsk Duration From User
-            int tempInt = Integer.parseInt(JOptionPane.showInputDialog("How will it take in hours?"));
-            taskClass.setDur(tempInt);
-            //Calulate TotHours of Hours
-            taskClass.calcTotalHours();
+            String tName = JOptionPane.showInputDialog("Task Name");
             //Get Task Desrciption From User
-            temp = JOptionPane.showInputDialog("Description Under 51 Characters");
-            taskClass.settDes(temp);
-            //Set the Task Number
-            taskClass.settNum(count);
+            String des = JOptionPane.showInputDialog("Description Under 51 Characters");
+            //MultiChoice for the Status of the Task being added
+            int choice = JOptionPane.showOptionDialog(null, "Choose an Option:", "Options", JOptionPane.YES_NO_CANCEL_OPTION, 0, null, status, status[0]);
+            //Get Dev Details from User
+            String devDetails = JOptionPane.showInputDialog("First and Last Name of Developer");
+            //Get Task Duration From User
+            int dur = Integer.parseInt(JOptionPane.showInputDialog("How will it take in hours?"));
+            //Sends DAta to be set
+            taskData(tName,des,choice,devDetails,count,dur);
+            //Output a Status
+            taskClass.textFileWrite();
             
-            //Generates the Task Id 
-            taskClass.settID();
-            
-            taskClass.printTaskDetails(kanBan);
+            taskClass.userOut();
+            output(taskClass.getOutput());
         }
         JOptionPane.showMessageDialog(null, taskClass.returnTotalHours()+" Hours","Total Duration",1);
     }
     
     public void report()
     {
-        int size = kanBan.getLastID();
-        
-        int[] arrNumber = new int[size];
-        String[] arrDev = new String[size];
-        String[] arrDescription = new String[size];
-        String[] arrTName = new String[size];
-        String[] arrID = new String[size];
-        int[] arrDuration = new int[size];
-        String[] arrStatus = new String[size];
-        
-        for (int i = 1; i < size; i++) {
-            arrNumber[i] = kanBan.getIntCol(i, 2);
-            arrStatus[i] = kanBan.getStrCol(i, 0);
-            output(String.valueOf(arrNumber[i])+ " " +arrStatus[i]);
+        int size = 0;
+        //Get the Size for the Arrays
+        try 
+        {
+            File file = new File("data.txt");
+            Scanner reader = new Scanner(file);
+        while (reader.hasNextLine()) {
+              String data = reader.nextLine();
+              size++;
+            }  
+            reader.close();
+            
+        } catch (FileNotFoundException e) 
+        {
+            output("An error occurred. ln200:ProjectP3");
         }
-    }
- 
+        
+        String[] arrTName = new String[size];
+        String[] arrDescription = new String[size];
+        String[] arrDev = new String[size];
+        String[] arrID = new String[size];
+        String[] arrStatus = new String[size];
+        int[] arrNumber = new int[size];
+        int[] arrDuration = new int[size];
+        
+        try        
+        {
+            File file = new File("data.txt");
+            Scanner reader = new Scanner(file);
+            for (int i = 1; i < size; i++) {
+                String data = reader.nextLine();
+            int x = data.indexOf("|");
+
+            arrTName[i] = data.substring(0, x);
+
+            String temp = data.substring(x+1);
+            data = temp;
+            x = data.indexOf("|");
+
+            arrDescription[i] = data.substring(0, x);
+
+            temp = data.substring(x+1);
+            data = temp;
+            x = data.indexOf("|");
+
+            arrDev[i] = data.substring(0, x);
+
+            temp = data.substring(x+1);
+            data = temp;
+            x = data.indexOf("|");
+
+            arrID[i] = data.substring(0, x);
+
+            temp = data.substring(x+1);
+            data = temp;
+            x = data.indexOf("|");
+
+            arrStatus[i] = data.substring(0, x);
+
+            temp = data.substring(x+1);
+            data = temp;
+            x = data.indexOf("|");
+
+            arrNumber[i] = Integer.parseInt(data.substring(0, x));
+
+            temp = data.substring(x+1);
+            data = temp;
+
+            arrDuration[i] = Integer.parseInt(data.substring(0, data.length()));
+        }
+            
+        }
+        catch(FileNotFoundException e){
+            output("An error occurred. ln266:ProjectP3");
+        }
+            
+        
+        
+        Display display = new Display(size);
+        
+        display.displayDone(kanBan);
+        
+        }
+        
 }
 
 //OpenAI. (2024). ChatGPT (Jun 21 version) [GPT-3.5 model]. https://chat.openai.com/ 
@@ -169,6 +328,9 @@ public class ProjectP3 {
 
 //W3Schools. 1998. To Create simplified and interavtive learning experiences,
 // 17 November 2015. [Online]. Available at: https://www.w3schools.com/java/java_while_loop.asp [Accessed 31 March 2024].
+
+//W3Schools. 1998. To Create simplified and interavtive learning experiences,
+// 17 November 2015. [Online]. Available at: https://www.w3schools.com/java/java_files_create.asp [Accessed 04 June 2024].
 
 //Serplat. 2010. How to add row in JTable? (Version 1.0) [Source code].
 //https://stackoverflow.com/questions/3549206/how-to-add-row-in-jtable (Accessed 03 May 2024).
