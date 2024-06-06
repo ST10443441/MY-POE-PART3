@@ -24,7 +24,7 @@ public class TaskClass {
     private int totDur = 0;
     String[] status = {"To Do","Done","Doing"};
 
-    ProjectP3 obj = new ProjectP3();
+    //ProjectP3 obj = new ProjectP3();
   
     public TaskClass(){}
     //Test Task Description length
