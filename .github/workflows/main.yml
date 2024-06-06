@@ -40,7 +40,7 @@ jobs:
      # Compiles classes to test 
       - name: compile classes
         working-directory: ./src
-        run: javac -cp "../testresources/junit-platform-console-standalone-1.6.0.jar" ./projectp3/BaseForm.java ./projectp3/EasyKanBan.java ./projectp3/ProjectP3.java ./projectp3/TaskClass.java ./projectp3/Users.java  "../test/projectp3/ProjectP3Test.java"      
+        run: javac -cp "../testresources/junit-platform-console-standalone-1.6.0.jar" ./projectp3/BaseForm.java ./projectp3/EasyKanBan.java ./projectp3/ProjectP3.java ./projectp3/TaskClass.java ./projectp3/Display.java ./projectp3/Users.java  "../test/projectp3/ProjectP3Test.java"      
                                                                    
     # list contents of src to verify that classess compiled 
       - name: List contents of src directory after compile
@@ -50,7 +50,7 @@ jobs:
        # copy compiled classes to test directory 
       - name : copy compiled classes to testresources directory 
         working-directory: ./src/projectp3
-        run: cp -t  "../../test/projectp3"  TaskClass.class  Users.class BaseForm.class EasyKanBan.class ProjectP3.class
+        run: cp -t  "../../test/projectp3"  TaskClass.class  Users.class BaseForm.class EasyKanBan.class ProjectP3.class Display.class
         
         #copy compiled tests 
       - name : copy compiled Test classes
