@@ -8,7 +8,7 @@ import static projectp3.ProjectP3.kanBan;
 
 /**
  *
- * @author Aries
+ * @author @author Cameron Griffin ST10443441
  */
 public class Display {
     int size = 0;
