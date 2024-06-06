@@ -20,6 +20,7 @@ public class EasyKanBan extends javax.swing.JFrame {
      */
     public EasyKanBan() {
         initComponents();
+
     }
 
     /**
@@ -47,11 +48,11 @@ public class EasyKanBan extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Status", "Developer", "Task Number ", "Task Name", "Description", "Task ID ", "Duration"
+                "Status", "Developer", "Task Num ", "Task Name", "Description", "Task ID ", "Duration"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -65,7 +66,23 @@ public class EasyKanBan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblOutput.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblOutput);
+        if (tblOutput.getColumnModel().getColumnCount() > 0) {
+            tblOutput.getColumnModel().getColumn(0).setMinWidth(5);
+            tblOutput.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblOutput.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblOutput.getColumnModel().getColumn(1).setMinWidth(30);
+            tblOutput.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblOutput.getColumnModel().getColumn(1).setMaxWidth(100);
+            tblOutput.getColumnModel().getColumn(2).setMinWidth(60);
+            tblOutput.getColumnModel().getColumn(2).setPreferredWidth(60);
+            tblOutput.getColumnModel().getColumn(2).setMaxWidth(60);
+            tblOutput.getColumnModel().getColumn(3).setMinWidth(50);
+            tblOutput.getColumnModel().getColumn(3).setMaxWidth(100);
+            tblOutput.getColumnModel().getColumn(5).setMaxWidth(60);
+            tblOutput.getColumnModel().getColumn(6).setMaxWidth(60);
+        }
 
         pnlHeader.setName("pnlHeader"); // NOI18N
 
@@ -182,7 +199,7 @@ public class EasyKanBan extends javax.swing.JFrame {
     {
         tpOutput.setText(out);        
     }
-    
+    //Add Tasks to Table
     public void setTable(String tName,String tDes,String devDetails,String tID,String tStatus,int tNum,int duration)
     {
         //Add Values to the Table
@@ -191,15 +208,22 @@ public class EasyKanBan extends javax.swing.JFrame {
         model.addRow(row);
         last = tNum;
     }
+    //Reset Table For Reports
     public void resetTable(int size)
     {
-        DefaultTableModel model = (DefaultTableModel) tblOutput.getModel(); 
-        for (int i = 0; i < size; i++) 
+        //Get Model of table to manipulate Rows
+        DefaultTableModel model = (DefaultTableModel) tblOutput.getModel();
+        //Get row count 
+        int rowCount = model.getRowCount();
+        //Remove rows
+        for (int i = rowCount - 1; i >= 0; i--) 
         {
-            model.removeRow(i);    
+            model.removeRow(i);
         }
          
     }
+    
+    
     /**
      * @param args the command line arguments
      */

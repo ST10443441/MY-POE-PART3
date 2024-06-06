@@ -1,4 +1,4 @@
-Login|Login Class|John Foster|Lo;1;IN|To Do|1|4
-Register|Register Class|Jean Paul|Re;2;TER|To Do|2|7
-JOhn|Jonhh|Jonhh|JO;3;OHN|To Do|3|4
-KAte|Kateee|Kateee|KA;4;ATE|Done|4|8
+Register|Register Class Feature|Kate Benefield|Re;1;TER|To Do|1|4
+Report|Add Report Features|John John|Re;2;ORT|Doing|2|6
+Test|Testing features|Tester 2|Te;3;EST|Done|3|1
+Login|Login Task Feature|John Denver|Lo;4;GIN|Done|4|9

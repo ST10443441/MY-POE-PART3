@@ -8,6 +8,8 @@ package projectp3;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,12 +107,13 @@ public class ProjectP3 {
                 throw new AssertionError();
         }
     }
+    
     public static void taskData(String tName,String tDes,int choice,String devDetails,int count,int duration)
     {
             //Sets the Data from the User
             taskClass.settName(tName);
             //Set Dev Details from User
-            taskClass.setDevDetails(tDes);
+            taskClass.setDevDetails(devDetails);
             //Sets Choice
             taskClass.setStatus(choice);
             //Set Task Duration From User
@@ -225,10 +228,11 @@ public class ProjectP3 {
             //Sends DAta to be set
             taskData(tName,des,choice,devDetails,count,dur);
             //Output a Status
-            taskClass.textFileWrite();
+            taskClass.textFileWrite(true);
             
-            taskClass.userOut();
-            output(taskClass.getOutput());
+            output(taskClass.userOut());
+            
+//            output(taskClass.getOutput());
         }
         JOptionPane.showMessageDialog(null, taskClass.returnTotalHours()+" Hours","Total Duration",1);
     }
@@ -249,9 +253,10 @@ public class ProjectP3 {
             
         } catch (FileNotFoundException e) 
         {
-            output("An error occurred. ln200:ProjectP3");
+            System.out.println("An error occurred. ln255:ProjectP3-report()");
         }
-        
+        //Declare Arrays
+        size++;
         String[] arrTName = new String[size];
         String[] arrDescription = new String[size];
         String[] arrDev = new String[size];
@@ -259,7 +264,7 @@ public class ProjectP3 {
         String[] arrStatus = new String[size];
         int[] arrNumber = new int[size];
         int[] arrDuration = new int[size];
-        
+        //Populate Arrays
         try        
         {
             File file = new File("data.txt");
@@ -308,15 +313,67 @@ public class ProjectP3 {
             
         }
         catch(FileNotFoundException e){
-            output("An error occurred. ln266:ProjectP3");
+            System.out.println("An error occurred. ln314:ProjectP3-report()");
         }
-            
-        
         
         Display display = new Display(size);
         
-        display.displayDone(kanBan);
+        //Sending arrays to dispaly class
+        display.setArrDescription(arrDescription);
+        display.setArrDev(arrDev);
+        display.setArrDuration(arrDuration);
+        display.setArrID(arrID);
+        display.setArrNumber(arrNumber);
+        display.setArrStatus(arrStatus);
+        display.setArrTName(arrTName);
         
+        //Ask USer which report they want to see
+        String[] status = {"All","Done","Longest","Search","Delete","Quit"};
+        int choice = JOptionPane.showOptionDialog(null, "Choose an Option:", "Options", JOptionPane.YES_NO_CANCEL_OPTION, 0, null, status, status[0]);
+        
+        //Split Menu For search
+        if (choice == 3) 
+        {
+            //Ask USer For Search Method
+            String[] searchStatus = {"Quit","Developer","Task Name"};
+            int searchChoice = JOptionPane.showOptionDialog(null, "Choose an Option:", "Options", JOptionPane.YES_NO_CANCEL_OPTION, 0, null, searchStatus, searchStatus[0]);
+            
+            //If user chooses Quit Report method Quits
+            choice = 5 + searchChoice;
+            
+            //Get Search Parameters from User
+            if((choice == 6)||(choice == 7))
+            {
+                String search = JOptionPane.showInputDialog(null,"Enter Search Parametors for: "+ searchStatus[searchChoice],"Search Function",1);
+                if (search.isEmpty())
+                {
+                    search = "null";
+                }
+                display.setSearchLine(search);
+            }
+        }
+        //Confirmation for Delete
+        if(choice == 4)
+        {
+            int confirm = JOptionPane.showConfirmDialog(null, "Are you Sure?","Confrimation",2);
+            if(confirm == 0)
+            {
+                String search = JOptionPane.showInputDialog(null,"Enter Search Parametors for: Delete","Delete Function",1);
+                if (search.isEmpty())
+                {
+                    search = "null";
+                }
+                display.setSearchLine(search);
+            }else 
+            {
+                choice = 5;
+            }
+        }
+        
+        //Run Choice method in Display Class
+        display.runChoice(choice, kanBan);   
+        //Get Status to User
+        output(display.getStatusLine());
         }
         
 }

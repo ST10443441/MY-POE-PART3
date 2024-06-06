@@ -47,20 +47,16 @@ public class TaskClass {
         kanBan.setTable(tName, tDes, devDetails, tID, tStatus, tNum, duration);
     }
     //Sends Output to User
-    public void userOut()
+    public String userOut()
     {
         //Outputs Data in JoptionPane
-        JOptionPane.showMessageDialog(null, tStatus,"Status",1);
-        JOptionPane.showMessageDialog(null, devDetails,"Developer Details",1);
-        JOptionPane.showMessageDialog(null, tNum,"Task Number",1);
-        JOptionPane.showMessageDialog(null, tName,"Task Name",1);
-        JOptionPane.showMessageDialog(null, tDes,"Task Description",1);
-        JOptionPane.showMessageDialog(null, tID,"Task ID",1);
-        JOptionPane.showMessageDialog(null, duration+" Hours","Duration",1);
+       
+        return "Status: " + tStatus +"\tDeveloper Details: " + devDetails + "\tTask Number: "+ tNum
+                + "\nTask Name: " + tName + "\nTask Description: " + tDes + "\nTask ID: " + tID + "\tDuration: " + duration+" Hours";
     }
     
     //Create Text File for Data Storage
-    public void textFileWrite()
+    public void textFileWrite(boolean append)
     {
         String line = tName+"|"+tDes+"|"+devDetails+"|"+tID+"|"+tStatus+"|"+tNum+"|"+duration+"\n";
         File file = new File("data.txt");            //(W3schools,2024)
@@ -84,7 +80,7 @@ public class TaskClass {
         }
         
         try {                                               //(W3schools,2024)
-            FileWriter myWriter = new FileWriter(file.getName(),true);
+            FileWriter myWriter = new FileWriter(file.getName(),append);
             myWriter.write(line);
             myWriter.close();
         }
@@ -93,6 +89,8 @@ public class TaskClass {
             System.out.println("An error occurred. ln93:TaskClass");
         }
     }
+    
+    
     //Calc the total Hours 
     public void calcTotalHours()
     {

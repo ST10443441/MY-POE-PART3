@@ -5,8 +5,7 @@
 package projectp3;
 
 
-import projectp3.TaskClass;
-import projectp3.Users;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -87,10 +86,10 @@ public class ProjectP3Test {
     public void testTaskOneTName()
     {
      //Arrange 
-        String exTaskName = "Login Feature";
+        String exTaskName = "Create Login";
         //Act 
         TaskClass p = new TaskClass();
-        p.settName("Login Feature");
+        p.settName("Create Login");
         String acTaskName = p.gettName();
         //Assert
         assertEquals(exTaskName, acTaskName);    
@@ -111,10 +110,10 @@ public class ProjectP3Test {
     public void testTaskOneDevDetails()
     {
      //Arrange 
-        String expected = "Robyn Harrison";
+        String expected = "Mike Smith";
         //Act 
         TaskClass p = new TaskClass();
-        p.setDevDetails("Robyn Harrison");
+        p.setDevDetails("Mike Smith");
         String actual = p.getDevDetails();
         //Assert
         assertEquals(expected, actual);    
@@ -124,10 +123,10 @@ public class ProjectP3Test {
     public void testTaskOneDur()
     {
      //Arrange 
-        String expected = "8hrs";
+        String expected = "5hrs";
         //Act 
         TaskClass p = new TaskClass();
-        p.setDur(8);
+        p.setDur(5);
         
         String actual = String.valueOf(p.getDur())+"hrs";
         //Assert
@@ -154,10 +153,10 @@ public class ProjectP3Test {
     public void testTaskTwoTName()
     {
      //Arrange 
-        String exTaskName = "Add Task Feature";
+        String exTaskName = "Create Add Feature";
         //Act 
         TaskClass p = new TaskClass();
-        p.settName("Add Task Feature");
+        p.settName("Create Add Feature");
         String acTaskName = p.gettName();
         //Assert
         assertEquals(exTaskName, acTaskName);    
@@ -178,10 +177,10 @@ public class ProjectP3Test {
     public void testTaskTwoDevDetails()
     {
      //Arrange 
-        String expected = "Mike Smith";
+        String expected = "Edward Harrison";
         //Act 
         TaskClass p = new TaskClass();
-        p.setDevDetails("Mike Smith");
+        p.setDevDetails("Edward Harrison");
         String actual = p.getDevDetails();
         //Assert
         assertEquals(expected, actual);    
@@ -191,10 +190,10 @@ public class ProjectP3Test {
     public void testTaskTwoDur()
     {
      //Arrange 
-        String expected = "10hrs";
+        String expected = "8hrs";
         //Act 
         TaskClass p = new TaskClass();
-        p.setDur(10);
+        p.setDur(8);
         String actual = String.valueOf(p.getDur())+"hrs";
         //Assert
         assertEquals(expected, actual);    
@@ -212,4 +211,153 @@ public class ProjectP3Test {
         //Assert
         assertEquals(expected, actual);   
     }
+    
+    //Part Three
+    //Test Task Name
+    @Test
+    public void testPartThreeTName()
+    {
+     //Arrange 
+        String[] expected = {"Create Login","Create Add Features","Create Reports","Add Arrays"};
+        //Act 
+        Display p = new Display(4);
+        p.setArrTName(expected);
+        String[] actual = p.getArrTName();
+        //Assert
+        assertArrayEquals(expected, actual);    
+    }
+    //Test Task Developer Details
+    @Test
+    public void testPartThreeDevDetails()
+    {
+     //Arrange 
+        String[] expected = {"Mike Smith","Edward Harrison","Samantha Paulson","Glenda Oberholzer"};
+        //Act 
+        Display p = new Display(4);
+        p.setArrDev(expected);
+        String[] actual = p.getArrDev();
+        //Assert
+        assertArrayEquals(expected, actual);     
+    }
+    //Test Task Duration
+    @Test
+    public void testPartThreeDur()
+    {
+     //Arrange 
+        int[] expected = {5,8,2,11};
+        //Act 
+        Display p = new Display(4);
+        p.setArrDuration(expected);
+        int[] actual = p.getArrDuration();
+        //Assert
+        assertArrayEquals(expected, actual);   
+    }
+    //Test Task Status
+    @Test
+    public void testPartThreeStatus()
+    {
+     //Arrange 
+         String[] expected = {"To DO","Doing","Done","To Do"};
+        //Act 
+        Display p = new Display(4);
+        p.setArrStatus(expected);
+        String[] actual = p.getArrStatus();
+        //Assert
+        assertArrayEquals(expected, actual);   
+    }
+    //Tests for the longest Task Duration
+    @Test
+    public void testLongest()
+    {
+        Display p = new Display(4);
+        int[] dur = {5,8,2,11};
+        p.setArrDuration(dur);
+        String[] dev = {"Mike Smith","Edward Harrison","Samantha Paulson","Glenda Oberholzer"};
+        p.setArrDev(dev);
+        
+        //Assert 
+        String expected = "Glenda Oberholzer,11";
+        //Act
+        int x = p.longetsTaskTest();
+        String actual = p.getArrDev()[x]+","+p.getArrDuration()[x];
+        
+        //Assert
+        assertEquals(expected, actual);
+    }
+    //Test Search Function
+    @Test
+    public void testSearch()
+    {
+        Display p = new Display(4);
+        
+        String[] tName = {"Create Login","Create Add Features","Create Reports","Add Arrays"};
+        p.setArrTName(tName);
+        String[] dev = {"Mike Smith","Edward Harrison","Samantha Paulson","Glenda Oberholzer"};
+        p.setArrDev(dev);
+        
+        //Assert 
+        String expected = "Mike Smith,Create Login";
+        //Act
+        p.setSearchLine("Create Login");
+        int x = p.searchTaskTest();
+        String actual = p.getArrDev()[x]+","+p.getArrTName()[x];
+        
+        //Assert
+        assertEquals(expected, actual);
+    }
+    //Test Search Developer
+    @Test
+    public void testSearchDev()
+    {
+        Display p = new Display(4);
+        
+        String[] tName = {"Create Login","Create Add Features","Create Reports","Add Arrays"};
+        p.setArrTName(tName);
+        String[] dev = {"Mike Smith","Edward Harrison","Samantha Paulson","Glenda Oberholzer"};
+        p.setArrDev(dev);
+        
+        //Assert 
+        String expected = "Create Reports";
+        //Act
+        p.setSearchLine("Samantha Paulson");
+        int x = p.searchDevTest();
+        String actual = p.getArrTName()[x];
+        
+        //Assert
+        assertEquals(expected, actual);
+    }
+    //Test Search Developer
+    @Test
+    public void testDelete()
+    {
+        Display p = new Display(4);
+        
+        String[] tName = {"Create Login","Create Add Features","Create Reports","Add Arrays"};
+        p.setArrTName(tName);
+        String[] dev = {"Mike Smith","Edward Harrison","Samantha Paulson","Glenda Oberholzer"};
+        p.setArrDev(dev);
+        String[] arrDescription = new String[4];
+        p.setArrDescription(arrDescription);
+        String[] arrID = new String[4];
+        p.setArrID(arrID);
+        String[] arrStatus = new String[4];
+        p.setArrStatus(arrStatus);
+        int[] arrNumber = new int[4];
+        p.setArrNumber(arrNumber);
+        int[] arrDuration = new int[4];
+        p.setArrDuration(arrDuration);
+        
+        //Assert 
+        String expected = "Entry 'Create Reports' Successfully Deleted";
+        //Act
+        p.setSearchLine("Create Reports");
+       
+        String actual = p.deleteTaskTest();
+        
+        //Assert
+        assertEquals(expected, actual);
+    }
+    
+    
 }
+
