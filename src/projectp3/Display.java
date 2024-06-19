@@ -6,6 +6,7 @@ package projectp3;
 
 import static projectp3.ProjectP3.kanBan;
 
+
 /**
  *
  * @author @author Cameron Griffin ST10443441
@@ -55,8 +56,7 @@ public class Display {
     }
     
     //Getters
-    public String getStatusLine()
-    {
+    public String getStatusLine(){
         return statusLine;
     }
     public String[] getArrDev() {
@@ -71,7 +71,6 @@ public class Display {
     public int[] getArrDuration() {
         return arrDuration;
     }
-    
 
     //Run Choice From User
     public void runChoice(int i, EasyKanBan kanban) {
@@ -166,7 +165,15 @@ public class Display {
         {
             if(arrTName[i].equals(searchLine))
             {
+                //set x to value 
                 x = arrNumber[i];
+                //delete from 
+                arrTName[x] = " ";
+                arrDescription[x] = " ";
+                arrDev[x] = " ";
+                arrID[x] = " ";
+                arrStatus[x] = " ";
+                arrDuration[x] = 0;
             }
         }
         if(x != size){
@@ -251,7 +258,8 @@ public class Display {
             taskClass.settNum(count);
             //Generates the Task Id 
             taskClass.settID();
-
+            //Sends data to JTable
+            taskClass.printTaskDetails(kanBan);
     }
     
     //Search Tasks by Developer
@@ -293,7 +301,7 @@ public class Display {
     }
     
     
-    //Used For Tests
+    //Used For Tests to avoid Headless Error
     public int longetsTaskTest()
     {
         int longest = arrDuration[0];
@@ -307,9 +315,8 @@ public class Display {
             }   
         } 
         
-        return 3;
+        return num;
     }
-    
     public int searchTaskTest()
     {
         int num = 0;
@@ -324,7 +331,6 @@ public class Display {
         return num;
         
     }
-    
     public int searchDevTest()
     {
         int num = 0;
@@ -337,7 +343,6 @@ public class Display {
         }
         return num;
     }
-    
     public String deleteTaskTest()
     {
         
@@ -347,23 +352,31 @@ public class Display {
         {
             if(arrTName[i].equals(searchLine))
             {
+                //set x to value 
                 x = arrNumber[i];
+                //delete from 
+                arrTName[x] = " ";
+                arrDescription[x] = " ";
+                arrDev[x] = " ";
+                arrID[x] = " ";
+                arrStatus[x] = " ";
+                arrDuration[x] = 0;
             }
         }
         if(x != size){
-        //Moving remaining Tasks to fill Gaps
-        for (int i = x; i < size-1; i++) 
-            {
-                arrTName[i] = arrTName[i + 1];
-                arrDescription[i] = arrDescription[i + 1];
-                arrDev[i] = arrDev[i + 1];
-                arrID[i] = arrID[i + 1];
-                arrStatus[i] = arrStatus[i + 1];
-                arrDuration[i] = arrDuration[i + 1];
-            }
+            //Moving remaining Tasks to fill Gaps
+            for (int i = x; i < size-1; i++) 
+                {
+                    arrTName[i] = arrTName[i + 1];
+                    arrDescription[i] = arrDescription[i + 1];
+                    arrDev[i] = arrDev[i + 1];
+                    arrID[i] = arrID[i + 1];
+                    arrStatus[i] = arrStatus[i + 1];
+                    arrDuration[i] = arrDuration[i + 1];
+                }
         }
         size--;
-        
+        writeTextFile();
         return "Entry '"+ searchLine + "' Successfully Deleted";
     }
 }

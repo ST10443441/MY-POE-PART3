@@ -1,4 +1,2 @@
-Register|Register Class Feature|Kate Benefield|Re;1;TER|To Do|1|4
-Report|Add Report Features|John John|Re;2;ORT|Doing|2|6
-Test|Testing features|Tester 2|Te;3;EST|Done|3|1
-Login|Login Task Feature|John Denver|Lo;4;GIN|Done|4|9
+Create Reports|Reports|Samantha Paulson|Cr;0;RTS|Done|0|0
+Add Arrays|Arrays|Glenda Oberholzer|Ad;0;AYS|Done|0|0

@@ -15,25 +15,17 @@ import javax.swing.JOptionPane;
  * @author Cameron Griffin ST10443441
  */
 public class ProjectP3 {
-
-    
-    
-    
     public ProjectP3(){   }
     //Adding Variables to global 
     
     static BaseForm form = new BaseForm();
     static EasyKanBan kanBan = new EasyKanBan();
     static TaskClass taskClass = new TaskClass();
-
     
     public static void main(String[] args) 
     {
         form.setVisible(true);
         addExisting();
-        kanBan.setVisible(true);    
-        
-                
     }
     
     //Out put the message to the User and developer
@@ -310,7 +302,8 @@ public class ProjectP3 {
         }
             
         }
-        catch(FileNotFoundException e){
+        catch(FileNotFoundException e)
+        {
             System.out.println("An error occurred. ln314:ProjectP3-report()");
         }
         

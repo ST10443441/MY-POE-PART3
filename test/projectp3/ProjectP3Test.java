@@ -16,8 +16,6 @@ import static org.junit.Assert.*;
 public class ProjectP3Test {
     
     public ProjectP3Test() {    }
-
-
      boolean run = false;
     //Test Username
      @Test
@@ -79,7 +77,6 @@ public class ProjectP3Test {
         //Assert
         assertTrue(l);  }  
     }
-
     //Task One
     //Test Task Name
     @Test
@@ -146,7 +143,6 @@ public class ProjectP3Test {
         //Assert
         assertEquals(expected, actual);    
     }
-    
     //Task Two
     //Test Task Name
     @Test
@@ -211,7 +207,6 @@ public class ProjectP3Test {
         //Assert
         assertEquals(expected, actual);   
     }
-    
     //Part Three
     //Test Task Name
     @Test
@@ -334,16 +329,22 @@ public class ProjectP3Test {
         
         String[] tName = {"Create Login","Create Add Features","Create Reports","Add Arrays"};
         p.setArrTName(tName);
+        
         String[] dev = {"Mike Smith","Edward Harrison","Samantha Paulson","Glenda Oberholzer"};
         p.setArrDev(dev);
-        String[] arrDescription = new String[4];
+        
+        String[] arrDescription = {"Login","Add Features","Reports","Arrays"};
         p.setArrDescription(arrDescription);
+        
         String[] arrID = new String[4];
         p.setArrID(arrID);
-        String[] arrStatus = new String[4];
+        
+        String[] arrStatus = {"Done","Done","Done","Done"};
         p.setArrStatus(arrStatus);
+        
         int[] arrNumber = new int[4];
         p.setArrNumber(arrNumber);
+        
         int[] arrDuration = new int[4];
         p.setArrDuration(arrDuration);
         
