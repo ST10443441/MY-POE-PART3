@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package projectp3;
-
-
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -358,7 +355,5 @@ public class ProjectP3Test {
         //Assert
         assertEquals(expected, actual);
     }
-    
-    
 }
 

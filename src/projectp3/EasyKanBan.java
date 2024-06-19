@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package projectp3;
-
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *

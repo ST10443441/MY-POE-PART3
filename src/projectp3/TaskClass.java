@@ -4,14 +4,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectp3;
-
-
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -68,13 +64,13 @@ public class TaskClass {
             else 
             {
                 //For Developer
-                System.out.println("File Found.");
+                System.out.println("File Found."+ file.getName());
             }
             
         } 
         catch (IOException ex) {
             //For Developer
-            System.out.println("An error occurred.ln82:TaskClass");
+            System.out.println("An error occurred. ln73:TaskClass");
         }
         
         try {                                               //(W3schools,2024)
@@ -84,7 +80,7 @@ public class TaskClass {
         }
         catch (IOException e) {
             //For Developer
-            System.out.println("An error occurred. ln93:TaskClass");
+            System.out.println("An error occurred. ln83:TaskClass");
         }
     }
     

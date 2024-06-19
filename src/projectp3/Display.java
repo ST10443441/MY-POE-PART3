@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectp3;
-
 import static projectp3.ProjectP3.kanBan;
-
 
 /**
  *
@@ -14,10 +12,10 @@ import static projectp3.ProjectP3.kanBan;
 public class Display {
     int size = 0;
     String searchLine, statusLine;
-    public Display(int s)
-    {
+    public Display(int s)    {
         size = s;
     }
+    
     String[] arrTName = new String[size];
     String[] arrDescription = new String[size];
     String[] arrDev = new String[size];
@@ -299,7 +297,6 @@ public class Display {
         setStatisLine(found);
         
     }
-    
     
     //Used For Tests to avoid Headless Error
     public int longetsTaskTest()

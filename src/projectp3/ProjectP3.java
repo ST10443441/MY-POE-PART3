@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package projectp3;
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

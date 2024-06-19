@@ -9,7 +9,6 @@ package projectp3;
  * @author Cameron Griffin ST10443441
  */
 public class BaseForm extends javax.swing.JFrame {
-    
 
     /**
      * Creates new form Base
