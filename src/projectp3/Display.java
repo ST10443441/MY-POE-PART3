@@ -376,7 +376,6 @@ public class Display {
                 }
         }
         size--;
-        writeTextFile();
         return "Entry '"+ searchLine + "' Successfully Deleted";
     }
 }
